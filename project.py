@@ -1,3 +1,4 @@
+from bs4 import BeautifulSoup
 import cowsay
 import sys
 
@@ -12,22 +13,40 @@ def main():
         sys.exit("Too many command-line arguments")
     else:
         try:
-            if not sys.argv[1].endswith(".txt"):
-                raise ValueError
-            txtfile = sys.argv[1]
             newtxtfile = sys.argv[2]
+            if sys.argv[1].endswith(".txt"):
+                txtfile = sys.argv[1]
+            elif sys.argv[1].endswith(".html"):
+                htmlfile = sys.argv[1]
+                txtfile = convert_html(htmlfile, newtxtfile)
+                # print(txtfile) # temp, for debugging
+            elif not sys.argv[1].endswith(".txt") or not sys.argv[1].endswith(".html"):
+                raise ValueError
+
             # Sort the list alphabetically
             sorted_list = abc_sort(txtfile)
             print(f"There are {len(sorted_list)} items in your list.")
+
             # # Ask the user if they want to remove duplicates
             sorted_list = remove_duplicates_on_request(sorted_list)
             write_to_new_file(sorted_list, newtxtfile)
             print(f"Check {newtxtfile} to review your new TXT file.")
         except ValueError:
-            sys.exit("Not a TXT file")
+            sys.exit("Not a TXT or HTML file")
         except FileNotFoundError:
             sys.exit(f"Could not read {sys.argv[1]}")
 
+
+def convert_html(htmlfile, newtxtfile):
+    """Convert HTML file to TXT file containing list of URLs"""
+    with open(htmlfile) as fp:
+        soup = BeautifulSoup(fp, features="html.parser")
+
+    with open(newtxtfile, "w") as file:
+        for link in soup.find_all("a"):
+            URL = link.get("href")
+            file.write(URL + "\n")
+        return newtxtfile
 
 def abc_sort(txtfile):
     """Sort URLs alphabetically"""
@@ -63,6 +82,7 @@ def write_to_new_file(txtfile, newtxtfile):
         file.write("Updated TXT file\n\n")
         for line in txtfile:
             file.write(line + "\n")
+        return newtxtfile
 
 
 if __name__ == "__main__":

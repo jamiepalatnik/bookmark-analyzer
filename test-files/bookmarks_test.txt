@@ -1,0 +1,5 @@
+https://cs50.harvard.edu/python/2022/
+https://docs.python.org/3/
+https://docs.pytest.org/en/stable/
+https://www.google.com/
+https://cs50.harvard.edu/python/2022/

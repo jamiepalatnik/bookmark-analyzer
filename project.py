@@ -19,7 +19,6 @@ def main():
             elif sys.argv[1].endswith(".html"):
                 htmlfile = sys.argv[1]
                 txtfile = convert_html(htmlfile, newtxtfile)
-                # print(txtfile) # temp, for debugging
             elif not sys.argv[1].endswith(".txt") or not sys.argv[1].endswith(".html"):
                 raise ValueError
 
@@ -27,7 +26,7 @@ def main():
             sorted_list = abc_sort(txtfile)
             print(f"There are {len(sorted_list)} items in your list.")
 
-            # # Ask the user if they want to remove duplicates
+            # Ask the user if they want to remove duplicates
             sorted_list = remove_duplicates_on_request(sorted_list)
             write_to_new_file(sorted_list, newtxtfile)
             print(f"Check {newtxtfile} to review your new TXT file.")
@@ -47,6 +46,7 @@ def convert_html(htmlfile, newtxtfile):
             URL = link.get("href")
             file.write(URL + "\n")
         return newtxtfile
+
 
 def abc_sort(txtfile):
     """Sort URLs alphabetically"""

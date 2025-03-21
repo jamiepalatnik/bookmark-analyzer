@@ -1,12 +1,12 @@
 # Bookmark Analyzer
-#### Video Demo: [ADD VIDEO]
+#### Video Demo: https://youtu.be/VvQCyaEMJTI
 
 ## Introduction
 I'm a fan and frequent user of the [OneTab](https://www.one-tab.com/) browser extension. This browser extension allows you to easily convert your open tabs to a list of links. I have developed a habit of saving a large number of links/bookmarks with this extension. Some of the links are links that I use frequently and want to keep for easy access. Some links are to articles or blog posts that I want to read later. I don't always take the time to review links I have saved in the past, so I thought it would be interesting to have a way to clean up the links. I realized that this task is a data problem that I could approach with a Python script, so for my final project in the CS50P course, I decided to create this bookmark analyzer that I can use as a starting point to wrangle my bookmarks.
 
 The current iteration is a command-line program that allows the user to specify a TXT or HTML file to analyze as well as the filename where the results will be written. Currently, the program provides a count of the number of links in the given file, and then asks the user to confirm if they would like to remove duplicate links. If the user chooses to remove duplicate links, the program gives the number of duplicate links found. Finally, the program writes the updated list of links, sorted alphabetically, to the requested filename, so the user can open the new file and review.
 
-The project also includes a test_project.py file that contains tests for the custom functions I created. These tests can be run with the command `pytest test_project.py`.
+The project also includes a test_project.py file that contains tests for the custom functions I created, as well as test TXT and HTML files. These tests can be run with the command `pytest test_project.py`.
 
 ## Usage
 The user should provide two command-line arguments:
